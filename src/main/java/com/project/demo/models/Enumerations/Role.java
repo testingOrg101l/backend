@@ -1,4 +1,4 @@
-package com.project.demo.models;
+package com.project.demo.models.Enumerations;
 
 import lombok.RequiredArgsConstructor;
 

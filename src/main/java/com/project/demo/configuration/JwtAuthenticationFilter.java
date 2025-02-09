@@ -1,4 +1,3 @@
-/*
 package com.project.demo.configuration;
 
 import jakarta.servlet.FilterChain;
@@ -38,11 +37,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         try {
 
-           */
-/* if (true) {
+ if (true) {
                 filterChain.doFilter(request, response);
                 return;
-            }*//*
+            }
 
 
             // Skip filter for user authentication endpoints
@@ -111,4 +109,3 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 }
-*/

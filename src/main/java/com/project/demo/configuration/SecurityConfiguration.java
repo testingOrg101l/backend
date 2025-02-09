@@ -1,9 +1,8 @@
-/*
 package com.project.demo.configuration;
 
 
 
-import com.project.demo.models.Role;
+import com.project.demo.models.Enumerations.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,10 +33,10 @@ public class SecurityConfiguration {
                             req.requestMatchers(WHITE_LIST_URL)
                                     .permitAll()
                                     .requestMatchers("/api/v1/protected/**").hasAnyRole(Role.ADMIN.name())
-                                  .requestMatchers("/api/v1/connected/**").hasAnyRole(Role.ADMIN.name(),Role.USER.name(),Role.COACH.name())
-                                    .requestMatchers("/api/v1/manager/**").hasAnyRole(Role.ADMIN.name(),Role.COACH.name())
-                                    .requestMatchers("/api/v1/coach/**").hasAnyRole(Role.COACH.name(),Role.ADMIN.name())
-                                    .requestMatchers("/api/v1/user/**").hasAnyRole(Role.USER.name(),Role.ADMIN.name())
+                                    .requestMatchers("/api/v1/connected/**").hasAnyRole(Role.ADMIN.name(),Role.STUDENT.name(),Role.PROFESSOR.name())
+                                    .requestMatchers("/api/v1/manager/**").hasAnyRole(Role.ADMIN.name(),Role.PROFESSOR.name())
+                                    .requestMatchers("/api/v1/prof/**").hasAnyRole(Role.PROFESSOR.name(),Role.ADMIN.name())
+                                    .requestMatchers("/api/v1/student/**").hasAnyRole(Role.STUDENT.name(),Role.ADMIN.name())
                                     .anyRequest()
                                     .authenticated()
 
@@ -55,4 +54,3 @@ public class SecurityConfiguration {
         }
     }
 }
-*/
