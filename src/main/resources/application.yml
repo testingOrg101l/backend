@@ -1,5 +1,3 @@
-
-
 server:
   port: 5000
 
@@ -17,11 +15,6 @@ spring:
     password: password
     username: WigoAdmin
     driver-class-name: org.postgresql.Driver
-
-
-
-
-
   jpa:
     hibernate:
       ddl-auto: create-drop

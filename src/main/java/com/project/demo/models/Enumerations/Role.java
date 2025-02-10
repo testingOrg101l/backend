@@ -1,4 +1,4 @@
-package com.project.demo.models;
+package com.project.demo.models.Enumerations;
 
 import lombok.RequiredArgsConstructor;
 
@@ -7,6 +7,4 @@ public enum Role {
     ADMIN,
     STUDENT,
     PROFESSOR,
-
-
 }
