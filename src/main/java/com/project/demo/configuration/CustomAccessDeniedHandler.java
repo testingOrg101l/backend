@@ -1,4 +1,3 @@
-/*
 package com.project.demo.configuration;
 
 import io.jsonwebtoken.Claims;
@@ -67,4 +66,3 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         return "User";
     }
 }
-*/
