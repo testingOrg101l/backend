@@ -23,7 +23,6 @@ import java.util.List;
 public class UserAccount implements UserDetails {
     @Id
     @SequenceGenerator(
-
             allocationSize = 1,
             name = "user_account_id_sequence",
             sequenceName = "user_account_id_sequence")
@@ -42,7 +41,6 @@ public class UserAccount implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
@@ -52,7 +50,6 @@ public class UserAccount implements UserDetails {
 
     @Column(nullable = false)
     String phone;
-
 
     boolean isVerified=true;
     private boolean accountNonExpired=true;
@@ -64,22 +61,16 @@ public class UserAccount implements UserDetails {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-
     private LocalDateTime updatedAt =LocalDateTime.now();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
-
-
-
     @Override
     public String getPassword() {
         return password;
     }
-
     @Override
     public String getUsername() {
         return email;

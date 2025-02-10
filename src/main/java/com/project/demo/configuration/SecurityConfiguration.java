@@ -1,7 +1,5 @@
 package com.project.demo.configuration;
 
-
-
 import com.project.demo.models.Enumerations.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -46,8 +44,8 @@ public class SecurityConfiguration {
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                     .exceptionHandling(exceptions ->
                             exceptions.accessDeniedHandler(accessDeniedHandler)
-                    );
-
+                    )
+            ;
             return http.build();
         } catch (Exception e) {
             throw new RuntimeException("Error configuring HTTP security", e);

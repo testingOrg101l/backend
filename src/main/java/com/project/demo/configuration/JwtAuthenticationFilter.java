@@ -34,14 +34,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
-    ) throws ServletException, IOException {
+    ) throws IOException {
         try {
-
- if (true) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-
 
             // Skip filter for user authentication endpoints
             if (request.getServletPath().contains("/api/v1/public")) {
@@ -53,8 +47,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
-
-
 
             final String authHeader = request.getHeader("Authorization");
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -98,7 +90,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     return;
                 }
             }
-
             filterChain.doFilter(request, response);
         } catch (Exception e) {
             // Handle unexpected exceptions

@@ -108,8 +108,6 @@ public class JwtService {
         }
     }
 
-
-
    String extractAccountEmail( HttpServletRequest request){
         final String authHeader = request.getHeader("Authorization");
 
