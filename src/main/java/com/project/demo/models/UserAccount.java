@@ -57,7 +57,7 @@ public class UserAccount implements UserDetails {
     private boolean credentialsNonExpired=true;
     private boolean enabled=true;
     private boolean available;
-    private boolean canUseCommunityChat=true;
+
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
