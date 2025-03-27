@@ -15,56 +15,53 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-
-@Data
+@Getter
+@Setter
 @SuperBuilder
 @Entity
 @ToString
 @Table(name = "user_account")
 public class UserAccount implements UserDetails {
+    @Column(length = 1000)
+    String image;
+    @Column(nullable = false)
+    String phone;
+    boolean isVerified = true;
     @Id
     @GeneratedValue
-
 
     private Long id;
     @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String password;
-
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(length = 1000)
-    String  image;
-
-    @Column(nullable = false)
-    String phone;
-
-    boolean isVerified=true;
-    private boolean accountNonExpired=true;
-    private boolean accountNonLocked=true;
-    private boolean credentialsNonExpired=true;
-    private boolean enabled=true;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
+    private boolean enabled = true;
     private boolean available;
 
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    private LocalDateTime updatedAt =LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
+
     @Override
     public String getPassword() {
         return password;
     }
+
     @Override
     public String getUsername() {
         return email;

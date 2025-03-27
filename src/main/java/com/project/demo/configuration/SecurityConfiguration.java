@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private static final String[] WHITE_LIST_URL = {"/api/v1/public/**","/api/v1/test/**"};
+    private static final String[] WHITE_LIST_URL = {"/api/v1/public/**", "/api/v1/test/**", "/swagger-ui/**", "/v3/api-docs*/**"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final CustomAccessDeniedHandler accessDeniedHandler;
@@ -31,10 +31,10 @@ public class SecurityConfiguration {
                             req.requestMatchers(WHITE_LIST_URL)
                                     .permitAll()
                                     .requestMatchers("/api/v1/protected/**").hasAnyRole(Role.ADMIN.name())
-                                    .requestMatchers("/api/v1/connected/**").hasAnyRole(Role.ADMIN.name(),Role.STUDENT.name(),Role.PROFESSOR.name())
-                                    .requestMatchers("/api/v1/manager/**").hasAnyRole(Role.ADMIN.name(),Role.PROFESSOR.name())
-                                    .requestMatchers("/api/v1/prof/**").hasAnyRole(Role.PROFESSOR.name(),Role.ADMIN.name())
-                                    .requestMatchers("/api/v1/student/**").hasAnyRole(Role.STUDENT.name(),Role.ADMIN.name())
+                                    .requestMatchers("/api/v1/connected/**").hasAnyRole(Role.ADMIN.name(), Role.STUDENT.name(), Role.PROFESSOR.name())
+                                    .requestMatchers("/api/v1/manager/**").hasAnyRole(Role.ADMIN.name(), Role.PROFESSOR.name())
+                                    .requestMatchers("/api/v1/prof/**").hasAnyRole(Role.PROFESSOR.name(), Role.ADMIN.name())
+                                    .requestMatchers("/api/v1/student/**").hasAnyRole(Role.STUDENT.name(), Role.ADMIN.name())
                                     .anyRequest()
                                     .authenticated()
 
