@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 public class ConfigurationModel {
     @Id
-            @GeneratedValue(strategy = GenerationType.AUTO)
+            @GeneratedValue()
     long id;
     LocalDateTime startDate;
     LocalDateTime endDate;
