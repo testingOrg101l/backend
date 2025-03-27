@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.parameters.P;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,13 +18,19 @@ import java.util.List;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Projects {
+public class ProjectResult {
     @Id
     @GeneratedValue
     long id;
     String name;
     String code;
     String note;
+    LocalDate date;
+
+    @ManyToOne
+    ClassRoom room;
+    @Enumerated(EnumType.STRING)
+    Seance seance;
 
     @OneToMany
     List<Student> students;

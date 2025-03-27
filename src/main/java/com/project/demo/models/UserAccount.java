@@ -3,6 +3,7 @@ package com.project.demo.models;
 import com.project.demo.models.Enumerations.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Data
-@Builder
+@SuperBuilder
 @Entity
 @ToString
 @Table(name = "user_account")
@@ -35,7 +36,7 @@ public class UserAccount implements UserDetails {
     private Long id;
     @Column(name = "email", unique = true, nullable = false)
     private String email;
-
+    @Column( nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
