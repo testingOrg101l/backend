@@ -23,16 +23,9 @@ import java.util.List;
 @Table(name = "user_account")
 public class UserAccount implements UserDetails {
     @Id
-    @SequenceGenerator(
-            allocationSize = 1,
-            name = "user_account_id_sequence",
-            sequenceName = "user_account_id_sequence")
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_account_id_sequence"
-    )
+    @GeneratedValue
 
-    @Column(name = "id")
+
     private Long id;
     @Column(name = "email", unique = true, nullable = false)
     private String email;

@@ -18,7 +18,7 @@ import lombok.experimental.FieldDefaults;
 public class ClassRoom {
 
     @Id
-            @GeneratedValue(strategy = GenerationType.AUTO)
+            @GeneratedValue()
     long id;
     Integer number;
     String blocName;
