@@ -1,4 +1,4 @@
-package com.project.demo.controllers;
+package com.project.demo.controllers.userController;
 
 import com.project.demo.abstractServices.UserAccountAbstractService;
 import com.project.demo.models.PasswordUpdater;
@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -84,4 +82,9 @@ public class UserController implements UserAccountAbstractService {
     }
 }
 
+
+//fichier
+//json
+//websocket
+//stream
 
