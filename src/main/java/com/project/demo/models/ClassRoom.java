@@ -16,9 +16,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class ClassRoom {
-
     @Id
-            @GeneratedValue()
+    @GeneratedValue
     long id;
     Integer number;
     String blocName;
