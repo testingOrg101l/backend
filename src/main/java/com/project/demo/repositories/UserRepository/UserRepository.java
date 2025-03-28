@@ -1,4 +1,4 @@
-package com.project.demo.repositories;
+package com.project.demo.repositories.UserRepository;
 
 
 import com.project.demo.models.Enumerations.Role;
