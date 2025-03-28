@@ -32,7 +32,7 @@ public class UserAccount implements UserDetails, Principal {
     @Id
     @GeneratedValue
 
-    private Long id;
+    private long id;
     @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
