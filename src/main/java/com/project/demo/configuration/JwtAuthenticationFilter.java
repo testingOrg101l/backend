@@ -37,69 +37,72 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws IOException {
         try {
 
-            // Skip filter for user authentication endpoints
-            if (request.getServletPath().contains("/api/v1/public")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-
-            if (request.getServletPath().contains("/api/v1/test")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-            if (request.getServletPath().contains("/swagger-ui/**")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-
-            if (request.getServletPath().contains("/v3/api-docs*/**")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-
-            final String authHeader = request.getHeader("Authorization");
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write("{\"message\":\"Missing or invalid Authorization header\"}");
-                return;
-            }
-
-            final String jwt = authHeader.substring(7);
-            final String userEmail = jwtService.extractUserEmail(jwt);
-
-            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                try {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
-
-                    if (jwtService.isTokenValid(jwt, userDetails)) {
-                        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities()
-                        );
-                        authToken.setDetails(
-                                new WebAuthenticationDetailsSource().buildDetails(request)
-                        );
-                        SecurityContextHolder.getContext().setAuthentication(authToken);
-                    } else {
-                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        response.setContentType("application/json");
-                        response.setCharacterEncoding("UTF-8");
-                        response.getWriter().write("{\"message\":\"Invalid token\"}");
-                        return;
-                    }
-                } catch (Exception e) {
-                    // Handle any exceptions during user details loading or token validation
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
-                    response.getWriter().write("{\"message\":\"Authentication error\"}");
-                    return;
-                }
-            }
             filterChain.doFilter(request, response);
+
+
+//            // Skip filter for user authentication endpoints
+//            if (request.getServletPath().contains("/api/v1/public")) {
+//                filterChain.doFilter(request, response);
+//                return;
+//            }
+//
+//            if (request.getServletPath().contains("/api/v1/test")) {
+//                filterChain.doFilter(request, response);
+//                return;
+//            }
+//            if (request.getServletPath().contains("/swagger-ui/**")) {
+//                filterChain.doFilter(request, response);
+//                return;
+//            }
+//
+//            if (request.getServletPath().contains("/v3/api-docs*/**")) {
+//                filterChain.doFilter(request, response);
+//                return;
+//            }
+//
+//            final String authHeader = request.getHeader("Authorization");
+//            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+//                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                response.setContentType("application/json");
+//                response.setCharacterEncoding("UTF-8");
+//                response.getWriter().write("{\"message\":\"Missing or invalid Authorization header\"}");
+//                return;
+//            }
+//
+//            final String jwt = authHeader.substring(7);
+//            final String userEmail = jwtService.extractUserEmail(jwt);
+//
+//            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+//                try {
+//                    UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
+//
+//                    if (jwtService.isTokenValid(jwt, userDetails)) {
+//                        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+//                                userDetails,
+//                                null,
+//                                userDetails.getAuthorities()
+//                        );
+//                        authToken.setDetails(
+//                                new WebAuthenticationDetailsSource().buildDetails(request)
+//                        );
+//                        SecurityContextHolder.getContext().setAuthentication(authToken);
+//                    } else {
+//                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                        response.setContentType("application/json");
+//                        response.setCharacterEncoding("UTF-8");
+//                        response.getWriter().write("{\"message\":\"Invalid token\"}");
+//                        return;
+//                    }
+//                } catch (Exception e) {
+//                    // Handle any exceptions during user details loading or token validation
+//                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                    response.setContentType("application/json");
+//                    response.setCharacterEncoding("UTF-8");
+//                    response.getWriter().write("{\"message\":\"Authentication error\"}");
+//                    return;
+//                }
+//            }
+//            filterChain.doFilter(request, response);
         } catch (Exception e) {
             // Handle unexpected exceptions
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -107,5 +110,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{\"message\":\"Internal server error +"+e.getMessage()+e.getCause()+"\"}");
         }
+
     }
 }
