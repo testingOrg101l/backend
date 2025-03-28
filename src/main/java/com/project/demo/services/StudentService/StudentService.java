@@ -1,9 +1,12 @@
 package com.project.demo.services.StudentService;
 
+import com.project.demo.controllers.StudentController.StudentRequest;
 import com.project.demo.models.Student;
 import com.project.demo.repositories.StudentRepository.StudentRepository;
+import com.project.demo.utils.Utils;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +30,26 @@ public class StudentService {
 
     public void deleteStudent(Long id) {
         repository.deleteById(id);
+    }
+
+    public String getPassword(String email) {
+        Student student = repository.findByEmail(email).orElseThrow(
+                () -> new UsernameNotFoundException("User is Not Found")
+        );
+        student.setAvailable(true);
+        return student.getPassword();
+
+    }
+
+    public void populateStudent(StudentRequest studentRequest) {
+        String password = Utils.generatePassword();
+        Student student = Student.builder()
+                .firstName(studentRequest.getFirstName())
+                .lastName(studentRequest.getLastName())
+                .email(studentRequest.getEmail())
+                .password(password)
+                .available(false)
+                .build();
+        repository.save(student);
     }
 }

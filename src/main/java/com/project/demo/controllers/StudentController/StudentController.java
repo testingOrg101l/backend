@@ -44,4 +44,16 @@ public class StudentController {
     ResponseEntity<Student> updateEtudiant(@RequestBody Student student) {
         return ResponseEntity.ok(service.createOrUpdateStudent(student));
     }
+
+    @GetMapping("/getPassword")
+    public ResponseEntity<String> getPassword(@RequestBody String email) {
+        return ResponseEntity.ok(service.getPassword(email));
+    }
+
+    @PostMapping("/populate")
+    public ResponseEntity<Void> populateStudent(@RequestBody StudentRequest studentRequest) {
+        service.populateStudent(studentRequest);
+        return ResponseEntity.accepted().build();
+    }
+
 }
