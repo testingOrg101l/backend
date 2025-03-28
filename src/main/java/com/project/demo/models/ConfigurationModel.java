@@ -12,14 +12,13 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class ConfigurationModel {
     @Id
-            @GeneratedValue()
+    @GeneratedValue
     long id;
     LocalDateTime startDate;
     LocalDateTime endDate;

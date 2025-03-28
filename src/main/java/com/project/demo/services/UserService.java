@@ -1,4 +1,4 @@
 package com.project.demo.services;
 
-public class userService {
+public class UserService {
 }

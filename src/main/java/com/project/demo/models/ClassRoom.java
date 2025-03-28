@@ -10,15 +10,13 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class ClassRoom {
-
     @Id
-            @GeneratedValue()
+    @GeneratedValue
     long id;
     Integer number;
     String blocName;
