@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -20,8 +21,9 @@ import java.util.List;
 @SuperBuilder
 @Entity
 @ToString
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "user_account")
-public class UserAccount implements UserDetails {
+public class UserAccount implements UserDetails, Principal {
     @Column(length = 1000)
     String image;
     @Column(nullable = false)
@@ -30,8 +32,8 @@ public class UserAccount implements UserDetails {
     @Id
     @GeneratedValue
 
-    private Long id;
-    @Column(name = "email", unique = true, nullable = false)
+    private long id;
+    @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
@@ -85,6 +87,11 @@ public class UserAccount implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @Override
+    public String getName() {
+        return email;
     }
 }
 

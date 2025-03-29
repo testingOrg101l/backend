@@ -43,4 +43,13 @@ public class ProjectsController {
     ResponseEntity<Projects> updateEtudiant(@RequestBody Projects projects) {
         return ResponseEntity.ok(service.createOrUpdateProjects(projects));
     }
+
+    @PostMapping("/assignStudent/{projectId}/{studentId}")
+    public ResponseEntity<Void> assignStudentToProject(
+            @PathVariable Long projectId,
+            @PathVariable Long studentId
+    ) {
+        service.assignStudentToProject(projectId, studentId);
+        return ResponseEntity.ok().build();
+    }
 }
