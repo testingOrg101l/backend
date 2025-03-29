@@ -46,10 +46,20 @@ public class ProjectsController {
 
     @PostMapping("/assignStudent/{projectId}/{studentId}")
     public ResponseEntity<Void> assignStudentToProject(
-            @PathVariable Long projectId,
-            @PathVariable Long studentId
+            @PathVariable long projectId,
+            @PathVariable long studentId
     ) {
         service.assignStudentToProject(projectId, studentId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("assignProfessor/{projectId}/{professorId}")
+    public ResponseEntity<Void> assignEncadrantToProject(
+            @PathVariable("projectId") long projectId,
+            @PathVariable("professorId") long professorId,
+            @RequestBody String role
+    ) {
+        service.assignProfessorToProject(projectId, professorId, role.toUpperCase());
         return ResponseEntity.ok().build();
     }
 }
