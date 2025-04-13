@@ -2203,3 +2203,103 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
 2025-03-28T17:57:57.329+01:00  INFO 19384 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-28T17:57:57.370+01:00  INFO 19384 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-03-28T17:57:57.374+01:00  INFO 19384 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-29T14:16:54.609+01:00  INFO 23544 --- [main] com.project.demo.EspManagApplication     : Starting EspManagApplication using Java 23.0.2 with PID 23544 (D:\Study\project\backend\target\classes started by khiar in D:\Study\project\backend)
+2025-03-29T14:16:54.611+01:00  INFO 23544 --- [main] com.project.demo.EspManagApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-03-29T14:16:55.907+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-29T14:16:55.908+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-03-29T14:16:55.940+01:00  INFO 23544 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.project.demo.repositories.ProfessorRepository.ProfessorRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-03-29T14:16:55.942+01:00  INFO 23544 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.project.demo.repositories.ProjectsRepository.ProjectsRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-03-29T14:16:55.943+01:00  INFO 23544 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.project.demo.repositories.StudentRepository.StudentRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-03-29T14:16:55.944+01:00  INFO 23544 --- [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.project.demo.repositories.UserRepository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-03-29T14:16:55.945+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 0 JDBC repository interfaces.
+2025-03-29T14:16:55.955+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-29T14:16:55.956+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-29T14:16:55.996+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 4 JPA repository interfaces.
+2025-03-29T14:16:56.570+01:00  INFO 23544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5000 (http)
+2025-03-29T14:16:56.586+01:00  INFO 23544 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-29T14:16:56.586+01:00  INFO 23544 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2025-03-29T14:16:56.678+01:00  INFO 23544 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-29T14:16:56.678+01:00  INFO 23544 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2021 ms
+2025-03-29T14:16:56.861+01:00  INFO 23544 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-29T14:16:56.935+01:00  INFO 23544 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-29T14:16:56.978+01:00  INFO 23544 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-29T14:16:57.274+01:00  INFO 23544 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-29T14:16:57.303+01:00  INFO 23544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-29T14:16:57.468+01:00  INFO 23544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@136fece2
+2025-03-29T14:16:57.471+01:00  INFO 23544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-29T14:16:57.548+01:00  WARN 23544 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-29T14:16:58.688+01:00  INFO 23544 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-29T14:16:58.709+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.710+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « professor » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.710+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.710+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « professor » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.710+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.710+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.712+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.712+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.712+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.712+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.713+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « project_result_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « projects » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « projects » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.714+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « projects » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « projects_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « projects_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « student » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.715+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la relation « student » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.717+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.717+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « class_room » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.717+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.717+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « configuration_model » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « filiere » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « professor » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.718+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « project_result » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « project_result_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « projects » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.719+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « projects_students » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.720+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.720+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « student » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.720+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.720+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la table « user_account » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.720+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.721+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « class_room_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.721+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.721+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « configuration_model_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.721+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.721+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « filiere_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « project_result_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « projects_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-29T14:16:58.722+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la séquence « user_account_seq » n'existe pas, poursuite du traitement
+2025-03-29T14:16:58.827+01:00  INFO 23544 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-29T14:16:59.361+01:00  WARN 23544 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-29T14:16:59.644+01:00  INFO 23544 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ed7db72, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7018636a, org.springframework.security.web.context.SecurityContextHolderFilter@64455184, org.springframework.security.web.header.HeaderWriterFilter@39d4f046, org.springframework.web.filter.CorsFilter@379df603, org.springframework.security.web.authentication.logout.LogoutFilter@6e6ec9c, com.project.demo.configuration.JwtAuthenticationFilter@4accc3de, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48900d4a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ba90170, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e866323, org.springframework.security.web.session.SessionManagementFilter@27558dee, org.springframework.security.web.access.ExceptionTranslationFilter@1a557a52, org.springframework.security.web.access.intercept.AuthorizationFilter@34714012]
+2025-03-29T14:16:59.993+01:00  INFO 23544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 5000 (http) with context path ''
+2025-03-29T14:16:59.999+01:00  INFO 23544 --- [main] com.project.demo.EspManagApplication     : Started EspManagApplication in 5.902 seconds (process running for 6.734)
+2025-03-29T14:17:24.104+01:00  INFO 23544 --- [http-nio-5000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-29T14:17:24.104+01:00  INFO 23544 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-29T14:17:24.105+01:00  INFO 23544 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-29T14:17:25.164+01:00  INFO 23544 --- [http-nio-5000-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 680 ms
+2025-03-29T14:27:05.593+01:00  INFO 23544 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-29T14:27:05.634+01:00  INFO 23544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-29T14:27:05.638+01:00  INFO 23544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

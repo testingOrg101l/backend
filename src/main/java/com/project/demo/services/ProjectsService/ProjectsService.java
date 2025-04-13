@@ -2,11 +2,14 @@ package com.project.demo.services.ProjectsService;
 
 
 import com.project.demo.models.Projects;
+import com.project.demo.repositories.ProfessorRepository.ProfessorRepository;
 import com.project.demo.repositories.ProjectsRepository.ProjectsRepository;
 import com.project.demo.repositories.StudentRepository.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -15,6 +18,7 @@ import java.util.List;
 public class ProjectsService {
     private final ProjectsRepository repository;
     private final StudentRepository studentRepository;
+    private final ProfessorRepository professorRepository;
 
     public Projects createOrUpdateProjects(Projects projects) {
         return repository.save(projects);
@@ -34,8 +38,8 @@ public class ProjectsService {
 
     public void assignStudentToProject(long projectId, long studentId) {
         var project = getProjects(projectId);
-        var student = studentRepository.findById(studentId).orElseThrow(()-> new EntityNotFoundException("Student Not Found"));
-        if(project.getStudents().size() >= 2) {
+        var student = studentRepository.findById(studentId).orElseThrow(() -> new EntityNotFoundException("Student Not Found"));
+        if (project.getStudents().size() >= 2) {
             throw new IllegalStateException("Project already has 2 students");
         }
         if (project.getStudents().contains(student)) {
@@ -44,4 +48,24 @@ public class ProjectsService {
         project.getStudents().add(student);
         repository.save(project);
     }
+
+    public void assignProfessorToProject(long projectId, long encadrantId, String role) {
+        var project = getProjects(projectId);
+        var encadrant = professorRepository.findById(encadrantId).orElseThrow(() -> new EntityNotFoundException("Professor Not Found"));
+        switch (role) {
+            case "ENCADRANT":
+                project.setEncadrant(encadrant);
+                break;
+            case "RAPPORTEUR":
+                project.setRapporteur(encadrant);
+                break;
+            case "PRESIDENT":
+                project.setPresident(encadrant);
+                break;
+            default:
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid role: " + role);
+        }
+        repository.save(project);
+    }
+
 }

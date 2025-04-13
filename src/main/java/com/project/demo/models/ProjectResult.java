@@ -39,7 +39,7 @@ public class ProjectResult {
     Professor encadrant;
 
     @ManyToOne
-    Professor raporteur;
+    Professor rapporteur;
 
     @ManyToOne
     Professor president;
