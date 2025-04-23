@@ -4,6 +4,7 @@ package com.project.demo.services.ProfessorService;
 import com.project.demo.models.Professor;
 import com.project.demo.repositories.ProfessorRepository.ProfessorRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfessorService {
     private final ProfessorRepository repository;
+
+    @Transactional
+    public void saveSingle(Professor dto) {
+        Professor p = Professor.builder()
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .email(dto.getEmail())
+                .matricule(dto.getMatricule())
+                .project(null)
+                .build();
+        professorRepo.save(p);
+    }
 
     public Professor createOrUpdateProfessor(Professor professor) {
         return repository.save(professor);

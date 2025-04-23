@@ -1,12 +1,9 @@
 package com.project.demo.models;
 
-import com.project.demo.models.Enumerations.Seance;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.parameters.P;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -20,14 +17,16 @@ public class Projects {
     @Id
     @GeneratedValue
     long id;
+    @Column(nullable = false)
     String name;
+    @Column(nullable = false,unique = true)
     String code;
     String note;
 
     @OneToMany
     List<Student> students;
 
-
+    @JoinColumn(nullable = false)
     @ManyToOne
     Professor encadrant;
 

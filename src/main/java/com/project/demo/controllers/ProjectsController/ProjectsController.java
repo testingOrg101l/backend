@@ -1,18 +1,52 @@
 package com.project.demo.controllers.ProjectsController;
 
+import com.project.demo.models.ProjectDTO;
 import com.project.demo.models.Projects;
 import com.project.demo.services.ProjectsService.ProjectsService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/projects")
 @RequiredArgsConstructor
 public class ProjectsController {
     private final ProjectsService service;
+    private final ProjectsService projectsService;
+
+
+    @PostMapping(value = "/progress", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter uploadWithProgress(@RequestBody @Valid List<ProjectDTO> projects) {
+        SseEmitter emitter = new SseEmitter(0L); // disable timeout
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                int total = projects.size();
+                for (int i = 0; i < total; i++) {
+                    projectsService.saveSingle(projects.get(i));
+                    double pct = (i + 1) * 100.0 / total;
+                    emitter.send(SseEmitter.event()
+                            .name("progress")
+                            .data(pct));
+                }
+                emitter.send(SseEmitter.event()
+                        .name("complete")
+                        .data("All projects saved"));
+                emitter.complete();
+            } catch (Exception ex) {
+                emitter.completeWithError(ex);
+            }
+        });
+
+        return emitter;
+    }
+
 
     @PostMapping
     public ResponseEntity<Projects> createProjects(@RequestBody Projects projects) {

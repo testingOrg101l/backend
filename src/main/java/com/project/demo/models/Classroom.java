@@ -1,8 +1,8 @@
 package com.project.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,11 +14,14 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class ClassRoom {
+public class Classroom {
     @Id
     @GeneratedValue
     long id;
+    @Column(nullable = false)
     Integer number;
+    @Column(nullable = false)
     String blocName;
-    boolean active;
+    
+    boolean active=true;
 }
