@@ -1,8 +1,10 @@
 package com.project.demo.controllers.StudentController;
 
 
+import com.project.demo.models.Enumerations.Role;
 import com.project.demo.models.Student;
 import com.project.demo.services.StudentService.StudentService;
+import com.project.demo.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,9 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        student.setPassword(Utils.generatePassword());
+        student.setPhone("");
+        student.setRole(Role.STUDENT);
         return ResponseEntity.ok(service.createOrUpdateStudent(student));
     }
 

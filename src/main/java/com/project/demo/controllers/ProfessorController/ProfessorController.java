@@ -1,7 +1,9 @@
 package com.project.demo.controllers.ProfessorController;
 
+import com.project.demo.models.Enumerations.Role;
 import com.project.demo.models.Professor;
 import com.project.demo.services.ProfessorService.ProfessorService;
+import com.project.demo.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class ProfessorController {
 
     @PostMapping
     public ResponseEntity<Professor> createProfessor(@RequestBody Professor professor) {
+        professor.setPassword(Utils.generatePassword());
+        professor.setPhone("");
+        professor.setRole(Role.PROFESSOR);
         return ResponseEntity.ok(service.createOrUpdateProfessor(professor));
     }
 

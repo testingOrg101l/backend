@@ -1,7 +1,9 @@
-package com.project.demo.controllers.FiliereController;
+package com.project.demo.controllers.ConfigurationController;
 
+import com.project.demo.models.ConfigurationModel;
 import com.project.demo.models.Filiere;
 
+import com.project.demo.services.FiliereService.ConfigurationService;
 import com.project.demo.services.FiliereService.FiliereService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,38 +18,35 @@ import java.util.List;
 @Validated
 public class ConfigurationController {
 
-    private final FiliereService service;
-    public FiliereController(FiliereService service) {
+    private final ConfigurationService service;
+    public ConfigurationController(ConfigurationService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Filiere> getAll() {
+    public List<ConfigurationModel> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Filiere getById(@PathVariable Long id) {
+    public ConfigurationModel getById(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Filiere> create(@Valid @RequestBody Filiere f) {
-        Filiere created = service.create(f);
+    public ResponseEntity<ConfigurationModel> create(@Valid @RequestBody ConfigurationModel f) {
+        ConfigurationModel created = service.create(f);
         // you could build URI pointing to /api/filieres/{created.getId()}
         return ResponseEntity
-                .created(URI.create("/api/filieres/" + created.getId()))
+                .created(URI.create("/configuration/" + created.getId()))
                 .body(created);
     }
 
-    @PutMapping("/{id}")
-    public Filiere update(@PathVariable Long id, @Valid @RequestBody Filiere f) {
-        return service.update(id, f);
-    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+        service.reset(id);
         return ResponseEntity.noContent().build();
     }
 }

@@ -1,7 +1,9 @@
 package com.project.demo.services.FiliereService;
 
 import com.project.demo.exceptions.ResourceNotFoundException;
+import com.project.demo.models.ConfigurationModel;
 import com.project.demo.models.Filiere;
+import com.project.demo.repositories.ConfigurationRepository.ConfigurationRepository;
 import com.project.demo.repositories.FiliereRepository.FiliereRepository;
 
 import org.springframework.stereotype.Service;
@@ -11,47 +13,32 @@ import java.util.List;
 
 @Service
 public class ConfigurationService {
-    private final ConfigurationR repo;
+    private final ConfigurationRepository repo;
 
-    public FiliereService(FiliereRepository repo) {
+    public ConfigurationService(ConfigurationRepository repo) {
         this.repo = repo;
     }
 
-    public List<Filiere> findAll() {
+    public List<ConfigurationModel> findAll() {
         return repo.findAll();
     }
 
-    public Filiere findById(Long id) {
+    public ConfigurationModel findById(Long id) {
         return repo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Filiere not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Configuration not found with id " + id));
     }
 
     @Transactional
-    public Filiere create(Filiere f) {
-        if (repo.existsByCode(f.getCode())) {
-            throw new IllegalArgumentException("Filiere code already exists: " + f.getCode());
+    public ConfigurationModel create(ConfigurationModel f) {
+        if (repo.count()>0) {
+            throw new IllegalArgumentException("Configuration  already exists: ");
         }
         return repo.save(f);
     }
 
-    @Transactional
-    public Filiere update(Long id, Filiere incoming) {
-        Filiere existing = findById(id);
-
-        // if code changed, ensure uniqueness
-        if (!existing.getCode().equals(incoming.getCode())
-                && repo.existsByCode(incoming.getCode())) {
-            throw new IllegalArgumentException("Another Filiere already uses code: " + incoming.getCode());
-        }
-
-        existing.setName(incoming.getName());
-        existing.setCode(incoming.getCode());
-        return repo.save(existing);
-    }
 
     @Transactional
-    public void delete(Long id) {
-        Filiere f = findById(id);
-        repo.delete(f);
+    public void reset(Long id) {
+        repo.deleteAll();
     }
 }

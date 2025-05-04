@@ -26,16 +26,15 @@ import java.util.List;
 public class UserAccount implements UserDetails, Principal {
     @Column(length = 1000)
     String image;
-    @Column(nullable = false)
+    @Column()
     String phone;
     boolean isVerified = true;
     @Id
     @GeneratedValue
-
     private long id;
     @Column(unique = true, nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column()
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
