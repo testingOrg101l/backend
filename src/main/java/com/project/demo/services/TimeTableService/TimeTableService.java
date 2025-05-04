@@ -1,0 +1,62 @@
+package com.project.demo.services.TimeTableService;
+
+import com.project.demo.models.*;
+import com.project.demo.services.ClassroomService.ClassroomService;
+import com.project.demo.services.FiliereService.ConfigurationService;
+import com.project.demo.services.ProjectsService.ProjectsService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class TimeTableService {
+    private final ProjectsService projectsService;
+    private final ConfigurationService configurationService;
+    private final RestTemplate restTemplate;
+    private final ClassroomService classroomService;
+
+    @Value("${application.assignUrl}")
+    String assignUrl;
+
+    public List<TimeTableDto> getTimeTable() {
+        List<Projects> projects = projectsService.getAllProjects();
+        ConfigurationModel config = configurationService.findAll().getFirst();
+        List<Classroom> classrooms = classroomService.findAll();
+
+        List<TimeTableDto> timeTable = projects.stream()
+                .map(project -> {
+                    List<Long> studentsIds = project.getStudents()
+                            .stream()
+                            .map(student -> student.getId())
+                            .toList();
+                    ProjectDTO projectDTO = new ProjectDTO();
+                    projectDTO.setName(project.getName());
+                    projectDTO.setEncadrantId(project.getEncadrant().getId());
+                    projectDTO.setCode(project.getCode());
+                    projectDTO.setStudentIds(studentsIds);
+
+                    return new TimeTableDto(config, classrooms, projectDTO);
+                })
+                .toList();
+
+        HttpEntity<List<TimeTableDto>> requestEntity = new HttpEntity<>(timeTable);
+
+        ResponseEntity<List<TimeTableDto>> response = restTemplate.exchange(
+                assignUrl + "/generate-schedule",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<List<TimeTableDto>>() {
+                }
+        );
+
+        return response.getBody();
+    }
+}

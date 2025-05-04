@@ -44,3 +44,6 @@ spring:
           starttls:
             enable: true
 
+application:
+  assignUrl: http://192.168.68.164:5000
+
