@@ -1,6 +1,5 @@
 package com.project.demo.models;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
@@ -16,7 +15,8 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Student extends UserAccount {
 
-    long inscriptionNumber;
+
+    String matricule;
 
     @ManyToOne
     Projects project;

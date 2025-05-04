@@ -23,7 +23,7 @@ public class Projects {
     String code;
     String note;
 
-    @OneToMany
+    @OneToMany(mappedBy = "project")
     List<Student> students;
 
     @JoinColumn(nullable = false)

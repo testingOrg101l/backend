@@ -20,11 +20,11 @@ public class ProjectDTO {
     private String note;
 
     @NotNull
-    private Long encadrantId;
+    private String encadrantEmail;
 
-    private Long rapporteurId;
-    private Long presidentId;
+    private String rapporteurEmail;
+    private String presidentEmail;
 
     @NotNull @Size(min = 1)
-    private List<Long> studentIds;
+    private List<String> studentEmails;
 }

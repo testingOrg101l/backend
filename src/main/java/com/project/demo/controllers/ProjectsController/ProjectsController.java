@@ -49,8 +49,8 @@ public class ProjectsController {
 
 
     @PostMapping
-    public ResponseEntity<Projects> createProjects(@RequestBody Projects projects) {
-        return ResponseEntity.ok(service.createOrUpdateProjects(projects));
+    public ResponseEntity<Projects> createProjects(@RequestBody ProjectDTO projects) {
+        return ResponseEntity.ok(service.saveSingle(projects));
     }
 
     @GetMapping

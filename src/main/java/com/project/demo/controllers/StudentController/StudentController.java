@@ -19,7 +19,6 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService service;
-    private final StudentService studentService;
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
@@ -39,7 +38,7 @@ public class StudentController {
             try {
                 int total = students.size();
                 for (int i = 0; i < total; i++) {
-                    studentService.saveSingle(students.get(i));   // save one student
+                    service.saveSingle(students.get(i));   // save one student
                     double pct = (i + 1) * 100.0 / total;
 
                     // send a “progress” event with the percentage
