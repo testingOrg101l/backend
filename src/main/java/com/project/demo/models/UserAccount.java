@@ -35,7 +35,7 @@ public class UserAccount implements UserDetails, Principal {
     private long id;
     @Column(unique = true, nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
