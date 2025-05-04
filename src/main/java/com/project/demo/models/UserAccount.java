@@ -26,7 +26,7 @@ import java.util.List;
 public class UserAccount implements UserDetails, Principal {
     @Column(length = 1000)
     String image;
-    @Column(nullable = false)
+    @Column(nullable = true)
     String phone;
     boolean isVerified = true;
     @Id
