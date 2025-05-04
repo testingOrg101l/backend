@@ -36,7 +36,8 @@ public class SecurityConfiguration {
                                     .requestMatchers("/api/v1/prof/**").hasAnyRole(Role.PROFESSOR.name(), Role.ADMIN.name())
                                     .requestMatchers("/api/v1/student/**").hasAnyRole(Role.STUDENT.name(), Role.ADMIN.name())
                                     .anyRequest()
-                                    .authenticated()
+                                    .permitAll()
+                                   // .authenticated()
 
                     )
                     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

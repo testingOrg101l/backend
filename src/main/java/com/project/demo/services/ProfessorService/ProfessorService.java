@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfessorService {
     private final ProfessorRepository repository;
+    private final ProfessorRepository professorRepository;
 
     @Transactional
     public void saveSingle(Professor dto) {
@@ -24,7 +25,7 @@ public class ProfessorService {
                 .matricule(dto.getMatricule())
                 .project(null)
                 .build();
-        professorRepo.save(p);
+        professorRepository.save(p);
     }
 
     public Professor createOrUpdateProfessor(Professor professor) {
