@@ -33,15 +33,15 @@ public class TimeTableService {
 
         List<TimeTableDto> timeTable = projects.stream()
                 .map(project -> {
-                    List<Long> studentsIds = project.getStudents()
+                    List<String> studentsEmails = project.getStudents()
                             .stream()
-                            .map(student -> student.getId())
+                            .map(student -> student.getEmail())
                             .toList();
                     ProjectDTO projectDTO = new ProjectDTO();
                     projectDTO.setName(project.getName());
-                    projectDTO.setEncadrantId(project.getEncadrant().getId());
+                    projectDTO.setEncadrantEmail(project.getEncadrant().getEmail());
                     projectDTO.setCode(project.getCode());
-                    projectDTO.setStudentIds(studentsIds);
+                    projectDTO.setStudentEmails(studentsEmails);
 
                     return new TimeTableDto(config, classrooms, projectDTO);
                 })
