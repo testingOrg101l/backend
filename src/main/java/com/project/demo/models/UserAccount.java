@@ -26,7 +26,11 @@ import java.util.List;
 public class UserAccount implements UserDetails, Principal {
     @Column(length = 1000)
     String image;
+<<<<<<< HEAD
     @Column()
+=======
+    @Column(nullable = true)
+>>>>>>> 70ca0b5d2e53d535dff43491c104cd01f9fcf263
     String phone;
     boolean isVerified = true;
     @Id
@@ -34,7 +38,11 @@ public class UserAccount implements UserDetails, Principal {
     private long id;
     @Column(unique = true, nullable = false)
     private String email;
+<<<<<<< HEAD
     @Column()
+=======
+    @Column(nullable = true)
+>>>>>>> 70ca0b5d2e53d535dff43491c104cd01f9fcf263
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
