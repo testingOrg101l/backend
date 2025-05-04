@@ -36,9 +36,9 @@ public class ProjectResult {
     @Enumerated(EnumType.STRING)
     Seance seance;
 
-    @JoinColumn(nullable = false)
-    @OneToMany
-    List<Student> students;
+//    @JoinColumn
+//    @OneToMany
+//    List<Student> students;
 
 
     @JoinColumn(nullable = false)

@@ -17,25 +17,27 @@ import static org.springframework.http.HttpHeaders.*;
 @Configuration
 public class BeansConfig {
 
-
     @Bean
     public CorsFilter corsFilter() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        final CorsConfiguration config = new CorsConfiguration();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:5731"));
-        config.setAllowedHeaders(Arrays.asList(
-                HttpHeaders.ORIGIN,
-                CONTENT_TYPE,
-                ACCEPT,
-                AUTHORIZATION
-        ));
+
+        // <-- replace allowedOrigins("*") with allowedOriginPatterns("*")
+        config.setAllowedOriginPatterns(Collections.singletonList("*"));
+
+        config.setAllowedHeaders(Collections.singletonList("*"));
         config.setAllowedMethods(Arrays.asList(
-                "GET", "POST", "DELETE", "PUT", "PATCH"
+                "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"
         ));
+        // (optional) expose headers back to the browser
+        config.setExposedHeaders(Arrays.asList("Authorization", "Content-Disposition"));
+
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+
 
 
 

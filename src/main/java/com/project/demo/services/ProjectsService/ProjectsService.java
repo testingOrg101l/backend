@@ -6,7 +6,6 @@ import com.project.demo.models.Projects;
 import com.project.demo.repositories.ProfessorRepository.ProfessorRepository;
 import com.project.demo.repositories.ProjectsRepository.ProjectsRepository;
 import com.project.demo.repositories.StudentRepository.StudentRepository;
-import com.project.demo.services.ProfessorService.ProfessorService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,30 +24,30 @@ public class ProjectsService {
 
 
     @Transactional
-    public void saveSingle(ProjectDTO dto) {
+    public Projects saveSingle(ProjectDTO dto) {
         // 1) Validate unique code
         if (repository.existsByCode(dto.getCode())) {
             throw new IllegalArgumentException("Project code already exists: " + dto.getCode());
         }
 
         // 2) Load required encadrant
-        var enc = professorRepository.findById(dto.getEncadrantId())
-                .orElseThrow(() -> new IllegalArgumentException("Encadrant not found: " + dto.getEncadrantId()));
+        var enc = professorRepository.findByEmail(dto.getEncadrantEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Encadrant not found: " + dto.getEncadrantEmail()));
 
         // 3) Load optional rapporteur & president
-        var rap = dto.getRapporteurId() == null
+        var rap = dto.getRapporteurEmail() == null
                 ? null
-                : professorRepository.findById(dto.getRapporteurId())
-                .orElseThrow(() -> new IllegalArgumentException("Rapporteur not found: " + dto.getRapporteurId()));
+                : professorRepository.findByEmail(dto.getRapporteurEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Rapporteur not found: " + dto.getRapporteurEmail()));
 
-        var pres = dto.getPresidentId() == null
+        var pres = dto.getPresidentEmail() == null
                 ? null
-                : professorRepository.findById(dto.getPresidentId())
-                .orElseThrow(() -> new IllegalArgumentException("President not found: " + dto.getPresidentId()));
+                : professorRepository.findByEmail(dto.getPresidentEmail())
+                .orElseThrow(() -> new IllegalArgumentException("President not found: " + dto.getPresidentEmail()));
 
         // 4) Load students (ensures list size ≥ 1 by DTO validation)
-        var students = dto.getStudentIds().stream()
-                .map(id -> studentRepository.findById(id)
+        var students = dto.getStudentEmails().stream()
+                .map(id -> studentRepository.findByEmail(id)
                         .orElseThrow(() -> new IllegalArgumentException("Student not found: " + id)))
                 .toList();
 
@@ -63,7 +62,8 @@ public class ProjectsService {
                 .students(students)
                 .build();
 
-        repository.save(p);
+       Projects projects= repository.save(p);
+        return projects;
     }
 
 

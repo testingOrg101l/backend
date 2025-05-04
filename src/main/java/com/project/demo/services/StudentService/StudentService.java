@@ -29,7 +29,7 @@ public class StudentService {
                 .firstName(d.getFirstName())
                 .lastName(d.getLastName())
                 .email(d.getEmail())
-                .inscriptionNumber(d.getInscriptionNumber())
+                .matricule(d.getMatricule())
                 .project(null)
                 .build();
         repository.save(s);
